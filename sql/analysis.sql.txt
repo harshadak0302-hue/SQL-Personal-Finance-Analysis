@@ -1,0 +1,67 @@
+
+-- BASIC ANALYSIS
+
+
+-- 1. Average Income
+SELECT ROUND(AVG(Income),2) AS avg_income FROM data;
+
+-- 2. Average Age
+SELECT ROUND(AVG(Age),2) AS avg_age FROM data;
+
+-- 3. Total Individuals
+SELECT COUNT(*) AS total_people FROM data;
+
+-- 4. Average Dependents
+SELECT ROUND(AVG(Dependents),2) AS avg_dependents FROM data;
+
+
+
+-- EXPENSE ANALYSIS
+
+
+-- 5. Average Expense per Category
+SELECT ROUND(AVG(Rent),2) AS avg_rent FROM data;
+
+-- 6. Total Expense per Category
+SELECT SUM(Rent) AS total_rent FROM data;
+
+-- 7. Highest Spending Category
+-- (your union query here)
+
+
+
+-- INCOME VS EXPENSE
+
+
+-- 8. Total Income vs Expense
+SELECT 
+    SUM(Income) AS total_income,
+    SUM(Rent + Groceries + Transport + Eating_Out + 
+        Entertainment + Utilities + Healthcare + Education) AS total_expense
+FROM data;
+
+-- 9. Average Savings
+SELECT 
+    AVG(Income - (
+        Rent + Groceries + Transport + Eating_Out + 
+        Entertainment + Utilities + Healthcare + Education
+    )) AS avg_savings
+FROM data;
+
+
+
+-- ADVANCED ANALYSIS
+
+
+-- 10. Expense Percentage
+-- (your percentage query)
+
+-- 11. Overspending Individuals
+SELECT 
+    *,
+    (Rent + Groceries + Transport + Eating_Out + 
+     Entertainment + Utilities + Healthcare + Education) AS total_expense
+FROM data
+WHERE 
+    (Rent + Groceries + Transport + Eating_Out + 
+     Entertainment + Utilities + Healthcare + Education) > Income;
